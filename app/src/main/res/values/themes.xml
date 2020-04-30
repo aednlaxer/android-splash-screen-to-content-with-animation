@@ -1,7 +1,5 @@
 <resources>
 
-    <!-- TODO rename to themes -->
-
     <style name="Theme.SplashDemo" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
