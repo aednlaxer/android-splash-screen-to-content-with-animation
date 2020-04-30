@@ -1,5 +1,6 @@
 package com.example.splashscreendemo
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Matrix
@@ -27,6 +28,31 @@ class SplashView @JvmOverloads constructor(
     private val iconPath: Path = Path()
     private val iconMatrix: Matrix = Matrix()
 
+    private var scale = 1f
+
+    private var logoSideHalf: Int = 0
+    private var scaledLogoWidthHeight: Int = 0  // FIXME float
+
+    fun animateLogo() {
+        // Logo scale - from 1 to huge
+        ValueAnimator.ofFloat(1f, 1000f).apply {
+            duration = 3000
+            addUpdateListener {
+                scale = it.animatedValue as Float
+                requestLayout()
+                postInvalidate()
+            }
+            start()
+        }
+    }
+
+    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+        super.onLayout(changed, left, top, right, bottom)
+
+        scaledLogoWidthHeight = (scale * logoWidthHeight).toInt()
+        logoSideHalf = scaledLogoWidthHeight / 2
+    }
+
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
@@ -34,10 +60,9 @@ class SplashView @JvmOverloads constructor(
         canvas.drawColor(backgroundColor)
 
         // Second, draw logo
-        val logoSideHalf = logoWidthHeight / 2
         drawLogo(
             canvas,
-            logoWidthHeight,
+            scaledLogoWidthHeight,
             width / 2 - logoSideHalf,
             height / 2 - logoSideHalf
         )

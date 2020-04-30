@@ -13,6 +13,10 @@ class MainActivity : AppCompatActivity() {
 
         // Enable transparent status and navigation bar
         goEdgeToEdge()
+
+        // Animate splash screen logo
+        findViewById<SplashView>(R.id.splash_view)
+            .animateLogo()
     }
 
     private fun goEdgeToEdge() {
