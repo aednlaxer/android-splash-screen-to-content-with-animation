@@ -4,10 +4,10 @@
     https://thenounproject.com/search/?q=rss&i=2146954
 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="@dimen/splash_logo_size"
-    android:height="@dimen/splash_logo_size"
-    android:viewportWidth="95"
-    android:viewportHeight="95">
+    android:width="@dimen/splash_logo_width_height"
+    android:height="@dimen/splash_logo_width_height"
+    android:viewportWidth="@integer/splash_logo_viewport_width_height"
+    android:viewportHeight="@integer/splash_logo_viewport_width_height">
     <path
         android:fillColor="@color/colorAccent"
         android:pathData="M14.5151,0C9.2095,0 4.905,4.3 4.905,9.6C4.905,14.9 9.2095,19.2 14.5151,19.2C48.3507,19.2 75.7795,46.6 75.7795,80.4C75.7795,85.7 80.084,90 85.3896,90C90.6951,90 94.9997,85.7 94.9997,80.4C95.0998,36.1 58.9618,0 14.5151,0Z"/>

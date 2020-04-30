@@ -12,7 +12,9 @@ class SplashView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    private val logoSize = resources.getDimensionPixelSize(R.dimen.splash_logo_size)
+    private val logoWidthHeight = resources.getDimensionPixelSize(R.dimen.splash_logo_width_height)
+    private val viewportWidthHeight =
+        resources.getInteger(R.integer.splash_logo_viewport_width_height)
 
     private val backgroundColor = context.getColor(R.color.colorPrimary)
 
@@ -32,25 +34,24 @@ class SplashView @JvmOverloads constructor(
         canvas.drawColor(backgroundColor)
 
         // Second, draw logo
-        val logoSideHalf = logoSize / 2
+        val logoSideHalf = logoWidthHeight / 2
         drawLogo(
             canvas,
-            logoSize,
-            logoSize,
+            logoWidthHeight,
             width / 2 - logoSideHalf,
             height / 2 - logoSideHalf
         )
     }
 
-    private fun drawLogo(canvas: Canvas, width: Int, height: Int, dx: Int, dy: Int) {
-        val ow = 95f
-        val oh = 95f
-        val od = if (width / ow < height / oh) width / ow else height / oh
-
+    private fun drawLogo(canvas: Canvas, widthHeight: Int, dx: Int, dy: Int) {
+        val scale = widthHeight / viewportWidthHeight.toFloat()
         canvas.save()
-        canvas.translate((width - od * ow) / 2f + dx, (height - od * oh) / 2f + dy)
+        canvas.translate(
+            (widthHeight - scale * viewportWidthHeight) / 2f + dx,
+            (widthHeight - scale * viewportWidthHeight) / 2f + dy
+        )
         iconMatrix.reset()
-        iconMatrix.setScale(od, od)
+        iconMatrix.setScale(scale, scale)
         canvas.save()
 
         canvas.scale(1.0f, 1.0f)
