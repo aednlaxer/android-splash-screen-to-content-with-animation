@@ -1,0 +1,20 @@
+<!--
+    Icon:
+    RSS by Adrien Coquet from the Noun Project
+    https://thenounproject.com/search/?q=rss&i=2146954
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="@dimen/splash_logo_size"
+    android:height="@dimen/splash_logo_size"
+    android:viewportWidth="95"
+    android:viewportHeight="95">
+    <path
+        android:fillColor="@color/colorAccent"
+        android:pathData="M14.5151,0C9.2095,0 4.905,4.3 4.905,9.6C4.905,14.9 9.2095,19.2 14.5151,19.2C48.3507,19.2 75.7795,46.6 75.7795,80.4C75.7795,85.7 80.084,90 85.3896,90C90.6951,90 94.9997,85.7 94.9997,80.4C95.0998,36.1 58.9618,0 14.5151,0Z"/>
+    <path
+        android:fillColor="@color/colorAccent"
+        android:pathData="M14.5151,33C9.2095,33 4.905,37.3 4.905,42.6C4.905,47.9 9.2095,52.2 14.5151,52.2C30.1315,52.2 42.8449,64.8 42.8449,80.4C42.8449,85.7 47.1494,90 52.455,90C57.7606,90 62.0651,85.7 62.0651,80.4C62.0651,54.3 40.7427,33 14.5151,33Z"/>
+    <path
+        android:fillColor="@color/colorAccent"
+        android:pathData="M14.5152,66C6.5068,66 0,72.5 0,80.4C0,88.5 6.5068,95 14.5152,95C22.5237,95 29.1306,88.5 29.1306,80.4C29.0305,72.5 22.5237,66 14.5152,66Z"/>
+</vector>

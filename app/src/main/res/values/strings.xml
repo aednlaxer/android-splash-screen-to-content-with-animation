@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Splash Screen Demo</string>
+    <string name="welcome_title">Hi!</string>
+    <string name="welcome_text">This is main activity</string>
+</resources>
