@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="splash_logo_width_height">180dp</dimen>
-    <integer name="splash_logo_viewport_width_height">95</integer>
+    <dimen name="splash_logo_width_height">127dp</dimen>
+    <integer name="splash_logo_viewport_width_height">127</integer>
 </resources>

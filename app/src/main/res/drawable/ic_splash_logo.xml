@@ -1,7 +1,7 @@
 <!--
     Icon:
-    RSS by Adrien Coquet from the Noun Project
-    https://thenounproject.com/search/?q=rss&i=2146954
+    Heart by C. V. Galli from the Noun Project
+    https://thenounproject.com/search/?q=heart&i=3318894
 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="@dimen/splash_logo_width_height"
@@ -9,12 +9,6 @@
     android:viewportWidth="@integer/splash_logo_viewport_width_height"
     android:viewportHeight="@integer/splash_logo_viewport_width_height">
     <path
-        android:fillColor="@color/colorAccent"
-        android:pathData="M14.5151,0C9.2095,0 4.905,4.3 4.905,9.6C4.905,14.9 9.2095,19.2 14.5151,19.2C48.3507,19.2 75.7795,46.6 75.7795,80.4C75.7795,85.7 80.084,90 85.3896,90C90.6951,90 94.9997,85.7 94.9997,80.4C95.0998,36.1 58.9618,0 14.5151,0Z"/>
-    <path
-        android:fillColor="@color/colorAccent"
-        android:pathData="M14.5151,33C9.2095,33 4.905,37.3 4.905,42.6C4.905,47.9 9.2095,52.2 14.5151,52.2C30.1315,52.2 42.8449,64.8 42.8449,80.4C42.8449,85.7 47.1494,90 52.455,90C57.7606,90 62.0651,85.7 62.0651,80.4C62.0651,54.3 40.7427,33 14.5151,33Z"/>
-    <path
-        android:fillColor="@color/colorAccent"
-        android:pathData="M14.5152,66C6.5068,66 0,72.5 0,80.4C0,88.5 6.5068,95 14.5152,95C22.5237,95 29.1306,88.5 29.1306,80.4C29.0305,72.5 22.5237,66 14.5152,66Z"/>
+        android:fillColor="@color/white"
+        android:pathData="M62.998,109.677C62.416,109.677 61.834,109.445 61.369,108.979L21.813,69.423C10.062,57.673 10.062,38.476 21.813,26.726C33.098,15.557 51.131,15.092 62.998,25.446C68.466,20.559 75.447,18 82.892,18C90.92,18 98.482,21.141 104.183,26.842C109.884,32.543 113.025,40.105 113.025,48.133C113.025,56.16 109.884,63.722 104.183,69.423L64.627,108.979C64.161,109.445 63.58,109.677 62.998,109.677Z"/>
 </vector>
