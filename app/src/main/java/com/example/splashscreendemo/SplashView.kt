@@ -6,6 +6,8 @@ import android.graphics.Canvas
 import android.graphics.Matrix
 import android.graphics.Paint
 import android.graphics.Path
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
 import android.util.AttributeSet
 import android.view.View
 
@@ -23,6 +25,8 @@ class SplashView @JvmOverloads constructor(
         isAntiAlias = true
         color = context.getColor(R.color.colorAccent)
         style = Paint.Style.FILL
+        xfermode = PorterDuffXfermode(PorterDuff.Mode.DST_OUT)
+        alpha = 0
     }
 
     private val iconPath: Path = Path()
@@ -33,14 +37,29 @@ class SplashView @JvmOverloads constructor(
     private var logoSideHalf: Int = 0
     private var scaledLogoWidthHeight: Int = 0  // FIXME float
 
+    init {
+        setLayerType(LAYER_TYPE_SOFTWARE, null)
+    }
+
     fun animateLogo() {
         // Logo scale - from 1 to huge
-        ValueAnimator.ofFloat(1f, 1000f).apply {
-            duration = 3000
+        ValueAnimator.ofFloat(1f, 100f).apply {
+            duration = 4000
             addUpdateListener {
                 scale = it.animatedValue as Float
                 requestLayout()
                 postInvalidate()
+            }
+            start()
+        }
+
+        // Alpha animation
+        ValueAnimator.ofInt(0, 255).apply {
+            startDelay = 300
+            duration = 700
+            addUpdateListener {
+                iconPaint.alpha = it.animatedValue as Int
+//                postInvalidate()
             }
             start()
         }
