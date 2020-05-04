@@ -1,8 +1,11 @@
 package com.example.splashscreendemo
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Matrix
 import android.graphics.Paint
 import android.graphics.Path
@@ -23,10 +26,10 @@ class SplashView @JvmOverloads constructor(
 
     private val iconPaint: Paint = Paint().apply {
         isAntiAlias = true
-        color = context.getColor(R.color.colorAccent)
+        color = Color.WHITE
         style = Paint.Style.FILL
-        xfermode = PorterDuffXfermode(PorterDuff.Mode.DST_OUT)
-//        alpha = 0
+        xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
+        alpha = 255
     }
 
     private val originalIconPath: Path?
@@ -55,24 +58,35 @@ class SplashView @JvmOverloads constructor(
     fun animateLogo() {
         // Logo scale - from 1 to huge
         ValueAnimator.ofFloat(1f, 100f).apply {
-            duration = 4000
+            duration = 2500
+
+            // Update scale
             addUpdateListener {
                 scale = it.animatedValue as Float
                 requestLayout()
                 postInvalidate()
             }
+
+            // Completely hide view when animation ends
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    this@SplashView.visibility = GONE
+                }
+
+                override fun onAnimationCancel(animation: Animator?) {
+                    this@SplashView.visibility = GONE
+                }
+            })
+
             start()
         }
 
         // Alpha animation
-        ValueAnimator.ofInt(0, 255).apply {
-            startDelay = 300
-            duration = 700
-            addUpdateListener {
-                iconPaint.alpha = it.animatedValue as Int
-//                postInvalidate()
-            }
-//            start()
+        ValueAnimator.ofInt(255, 1).apply {
+            startDelay = 100
+            duration = 1000
+            addUpdateListener { iconPaint.alpha = it.animatedValue as Int }
+            start()
         }
     }
 
