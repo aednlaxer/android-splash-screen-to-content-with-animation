@@ -4,10 +4,10 @@
     https://thenounproject.com/search/?q=heart&i=3318894
 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="@dimen/splash_logo_width_height"
-    android:height="@dimen/splash_logo_width_height"
-    android:viewportWidth="@integer/splash_logo_viewport_width_height"
-    android:viewportHeight="@integer/splash_logo_viewport_width_height">
+    android:width="127dp"
+    android:height="127dp"
+    android:viewportWidth="127"
+    android:viewportHeight="127">
     <path
         android:fillColor="@color/white"
         android:pathData="M62.998,109.677C62.416,109.677 61.834,109.445 61.369,108.979L21.813,69.423C10.062,57.673 10.062,38.476 21.813,26.726C33.098,15.557 51.131,15.092 62.998,25.446C68.466,20.559 75.447,18 82.892,18C90.92,18 98.482,21.141 104.183,26.842C109.884,32.543 113.025,40.105 113.025,48.133C113.025,56.16 109.884,63.722 104.183,69.423L64.627,108.979C64.161,109.445 63.58,109.677 62.998,109.677Z"/>
