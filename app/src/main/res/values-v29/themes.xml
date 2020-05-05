@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.SplashDemo.MainTheme">
+        <item name="android:navigationBarColor">#00000000</item>
+        <item name="android:enforceNavigationBarContrast">false</item>
+    </style>
+
+</resources>
