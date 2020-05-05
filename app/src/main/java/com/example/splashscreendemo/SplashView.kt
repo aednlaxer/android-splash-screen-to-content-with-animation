@@ -13,6 +13,7 @@ import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
 import android.util.AttributeSet
 import android.view.View
+import android.view.animation.AccelerateInterpolator
 import androidx.core.graphics.PathParser
 
 class SplashView @JvmOverloads constructor(
@@ -57,8 +58,9 @@ class SplashView @JvmOverloads constructor(
 
     fun animateLogo() {
         // Logo scale - from 1 to huge
-        ValueAnimator.ofFloat(1f, 100f).apply {
-            duration = 2500
+        ValueAnimator.ofFloat(1f, 50f).apply {
+            duration = 1200
+            interpolator = AccelerateInterpolator()
 
             // Update scale
             addUpdateListener {
@@ -83,8 +85,7 @@ class SplashView @JvmOverloads constructor(
 
         // Alpha animation
         ValueAnimator.ofInt(255, 1).apply {
-            startDelay = 100
-            duration = 1000
+            duration = 500
             addUpdateListener { iconPaint.alpha = it.animatedValue as Int }
             start()
         }
