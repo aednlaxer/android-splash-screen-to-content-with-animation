@@ -22,18 +22,6 @@ class SplashView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    companion object {
-        private const val MASK_FINAL_RADIUS = 180f
-
-        private const val MASK_SCALE_START = 1f
-        private const val MASK_SCALE_END = 75f
-
-        private const val SCALE_ANIMATION_START_DELAY = 750L
-        private const val SCALE_ANIMATION_DURATION = 1500L
-
-        private const val ALPHA_ANIMATION_DURATION = 2000L
-    }
-
     private val backgroundColor = context.getColor(R.color.colorPrimary)
 
     private val iconPaint: Paint = Paint().apply {
@@ -154,5 +142,17 @@ class SplashView @JvmOverloads constructor(
         iconPath.transform(iconMatrix)
         canvas.drawPath(iconPath, iconPaint)
         canvas.restore()
+    }
+
+    companion object {
+        private const val MASK_FINAL_RADIUS = 180f
+
+        private const val MASK_SCALE_START = 1f
+        private const val MASK_SCALE_END = 75f
+
+        private const val SCALE_ANIMATION_START_DELAY = 750L
+        private const val SCALE_ANIMATION_DURATION = 1500L
+
+        private const val ALPHA_ANIMATION_DURATION = 2000L
     }
 }
