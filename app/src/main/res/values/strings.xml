@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Splash Screen Demo</string>
-    <string name="welcome_title">Hi!</string>
-    <string name="welcome_text">Welcome to my app!</string>
+    <string name="app_name">Demo</string>
+    <string name="welcome_title">Welcome!</string>
 </resources>

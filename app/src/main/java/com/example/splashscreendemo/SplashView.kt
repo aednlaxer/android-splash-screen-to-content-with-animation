@@ -17,11 +17,22 @@ import android.view.animation.AccelerateInterpolator
 import androidx.core.graphics.PathParser
 
 class SplashView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    private val logoWidthHeight: Float
-    private val viewportWidthHeight: Float
+    companion object {
+        private const val MASK_FINAL_RADIUS = 180f
+
+        private const val MASK_SCALE_START = 1f
+        private const val MASK_SCALE_END = 75f
+
+        private const val SCALE_ANIMATION_START_DELAY = 750L
+        private const val SCALE_ANIMATION_DURATION = 1500L
+
+        private const val ALPHA_ANIMATION_DURATION = 2000L
+    }
 
     private val backgroundColor = context.getColor(R.color.colorPrimary)
 
@@ -29,9 +40,18 @@ class SplashView @JvmOverloads constructor(
         isAntiAlias = true
         color = Color.WHITE
         style = Paint.Style.FILL
-        xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
-        alpha = 255
     }
+
+    private val maskPaint: Paint = Paint().apply {
+        isAntiAlias = true
+        color = backgroundColor
+        style = Paint.Style.FILL
+        alpha = 255
+        xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
+    }
+
+    private val logoWidthHeight: Float
+    private val viewportWidthHeight: Float
 
     private val originalIconPath: Path?
     private val iconPath: Path = Path()
@@ -45,21 +65,20 @@ class SplashView @JvmOverloads constructor(
     init {
         setLayerType(LAYER_TYPE_SOFTWARE, null)
 
-        val parsedVectorDrawable =
-            VectorDrawableParser.parsedVectorDrawable(resources, R.drawable.ic_splash_logo)
+        VectorDrawableParser.parsedVectorDrawable(resources, R.drawable.ic_splash_logo).run {
+            originalIconPath = this?.pathData?.let { PathParser.createPathFromPathData(it) }
 
-        originalIconPath =
-            parsedVectorDrawable?.pathData?.let { PathParser.createPathFromPathData(it) }
-
-        // Assuming vector drawable is square
-        logoWidthHeight = dp2px(parsedVectorDrawable?.width ?: 0f)
-        viewportWidthHeight = parsedVectorDrawable?.viewportWidth ?: 0f
+            // Assuming vector drawable is square
+            logoWidthHeight = dp2px(this?.width ?: 0f)
+            viewportWidthHeight = this?.viewportWidth ?: 0f
+        }
     }
 
     fun animateLogo() {
         // Logo scale - from 1 to huge
-        ValueAnimator.ofFloat(1f, 50f).apply {
-            duration = 1200
+        ValueAnimator.ofFloat(MASK_SCALE_START, MASK_SCALE_END).apply {
+            startDelay = SCALE_ANIMATION_START_DELAY
+            duration = SCALE_ANIMATION_DURATION
             interpolator = AccelerateInterpolator()
 
             // Update scale
@@ -85,8 +104,9 @@ class SplashView @JvmOverloads constructor(
 
         // Alpha animation
         ValueAnimator.ofInt(255, 1).apply {
-            duration = 500
-            addUpdateListener { iconPaint.alpha = it.animatedValue as Int }
+            duration = ALPHA_ANIMATION_DURATION
+            interpolator = AccelerateInterpolator()
+            addUpdateListener { maskPaint.alpha = it.animatedValue as Int }
             start()
         }
     }
@@ -101,10 +121,13 @@ class SplashView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        // First, draw background color
+        // Draw background color to hide content
         canvas.drawColor(backgroundColor)
 
-        // Second, draw logo
+        // Draw a "cutout" in the background
+        canvas.drawCircle(width / 2f, height / 2f, MASK_FINAL_RADIUS * this.scale, maskPaint)
+
+        // Draw logo
         drawLogo(
             canvas,
             scaledLogoWidthHeight,
@@ -117,12 +140,12 @@ class SplashView @JvmOverloads constructor(
         originalIconPath ?: return
 
         val scale = widthHeight / viewportWidthHeight
+
         canvas.save()
         canvas.translate(
             (widthHeight - scale * viewportWidthHeight) / 2f + dx,
             (widthHeight - scale * viewportWidthHeight) / 2f + dy
         )
-
         iconMatrix.reset()
         iconMatrix.setScale(scale, scale)
         canvas.scale(1.0f, 1.0f)
